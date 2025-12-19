@@ -1,35 +1,37 @@
 <mat-card>
-<h2>Добавить рецепт</h2>
+  <h2>Добавить рецепт</h2>
+  <form [formGroup]="recipeForm" (ngSubmit)="save()">
 
+    <mat-form-field style="width:100%">
+      <input matInput placeholder="Название" formControlName="title" />
+    </mat-form-field>
 
-<mat-form-field style="width:100%">
-<input matInput placeholder="Название" [(ngModel)]="title" />
-</mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput placeholder="Описание" formControlName="description" />
+    </mat-form-field>
 
+    <mat-form-field style="width:100%">
+      <input matInput placeholder="URL изображения" formControlName="imageUrl" />
+    </mat-form-field>
 
-<mat-form-field style="width:100%">
-<input matInput placeholder="Описание" [(ngModel)]="description" />
-</mat-form-field>
+    <div formArrayName="ingredients">
+      <div *ngFor="let ingCtrl of ingredients.controls; let i = index">
+        <mat-form-field style="width:100%">
+          <input matInput [formControlName]="i" placeholder="Ингредиент" />
+        </mat-form-field>
+      </div>
+      <button mat-button type="button" (click)="addIngredient()">➕ Добавить ингредиент</button>
+    </div>
 
+    <div formArrayName="steps">
+      <div *ngFor="let stepCtrl of steps.controls; let i = index">
+        <mat-form-field style="width:100%">
+          <input matInput [formControlName]="i" placeholder="Шаг" />
+        </mat-form-field>
+      </div>
+      <button mat-button type="button" (click)="addStep()">➕ Добавить шаг</button>
+    </div>
 
-<mat-form-field style="width:100%">
-<input matInput placeholder="URL изображения" [(ngModel)]="imageUrl" />
-</mat-form-field>
-
-
-<mat-form-field style="width:100%">
-<input matInput placeholder="Добавить ингредиент" [(ngModel)]="newIngredient" />
-<button mat-button matSuffix (click)="addIngredient()">Добавить</button>
-</mat-form-field>
-<ul><li *ngFor="let i of ingredients">{{ i }}</li></ul>
-
-
-<mat-form-field style="width:100%">
-<input matInput placeholder="Добавить шаг" [(ngModel)]="newStep" />
-<button mat-button matSuffix (click)="addStep()">Добавить</button>
-</mat-form-field>
-<ol><li *ngFor="let s of steps">{{ s }}</li></ol>
-
-
-<button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+    <button mat-raised-button color="primary" type="submit">Сохранить</button>
+  </form>
 </mat-card>

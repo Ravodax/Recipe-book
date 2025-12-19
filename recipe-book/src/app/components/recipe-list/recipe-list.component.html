@@ -1,26 +1,21 @@
 <h1>📖 Книга рецептов</h1>
 
-
 <mat-form-field style="width: 100%; margin-bottom: 10px;">
-<input matInput placeholder="Поиск рецепта" [(ngModel)]="searchQuery" />
+  <input matInput placeholder="Поиск рецепта" [(ngModel)]="searchQuery" />
 </mat-form-field>
 
-
-
-
-
-<a mat-raised-button color="primary" routerLink="/add">➕ Добавить рецепт</a>
 <mat-checkbox [(ngModel)]="showFavoritesOnly" style="margin-bottom:10px;">Только избранное</mat-checkbox>
 
+<a mat-raised-button color="primary" routerLink="/add">➕ Добавить рецепт</a>
+
 <mat-card *ngFor="let r of filteredRecipes" style="margin-top: 10px;">
-<img *ngIf="r.imageUrl" [src]="r.imageUrl" alt="{{ r.title }}" style="width:100%; max-height:200px; object-fit:cover; margin-bottom:10px;" />
-<mat-card-title>{{ r.title }}</mat-card-title>
-<mat-card-content>{{ r.description }}</mat-card-content>
+  <img *ngIf="r.imageUrl" [src]="r.imageUrl" alt="{{ r.title }}" style="width:100%; max-height:200px; object-fit:cover; margin-bottom:10px;" />
+  <mat-card-title>{{ r.title }}</mat-card-title>
+  <mat-card-content>{{ r.description }}</mat-card-content>
 
-
-<button mat-button color="accent" [routerLink]="['/recipe', r.id]">Подробнее</button>
-<button mat-button color="warn" (click)="deleteRecipe(r.id)">Удалить</button>
-<button mat-button color="primary" (click)="toggleFavorite(r.id)">
-{{ r.favorite ? '★ Избранное' : '☆ В избранное' }}
-</button>
+  <button mat-button color="accent" [routerLink]="['/recipe', r.id]">Подробнее</button>
+  <button mat-button color="warn" (click)="deleteRecipe(r.id)">Удалить</button>
+  <button mat-button color="primary" (click)="toggleFavorite(r.id)">
+    {{ r.favorite ? '★ Избранное' : '☆ В избранное' }}
+  </button>
 </mat-card>
