@@ -1,0 +1,13 @@
+<mat-card *ngIf="recipe">
+<img *ngIf="recipe.imageUrl" [src]="recipe.imageUrl" alt="{{ recipe.title }}" style="width:100%; max-height:300px; object-fit:cover; margin-bottom:10px;" />
+<mat-card-title>{{ recipe.title }}</mat-card-title>
+<mat-card-subtitle>Ингредиенты</mat-card-subtitle>
+<ul><li *ngFor="let i of recipe.ingredients">{{ i }}</li></ul>
+
+
+<mat-card-subtitle>Шаги</mat-card-subtitle>
+<ol><li *ngFor="let s of recipe.steps">{{ s }}</li></ol>
+
+
+<button mat-raised-button color="primary" (click)="goBack()">⬅ Назад</button>
+</mat-card>
